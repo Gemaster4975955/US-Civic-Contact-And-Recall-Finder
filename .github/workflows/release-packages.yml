@@ -1,0 +1,227 @@
+name: Build and Release Packages
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build-windows:
+    name: Build Windows ZIP
+    runs-on: windows-latest
+    outputs:
+      windows-zip: ${{ steps.upload.outputs.artifact-path }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '10.0.x'
+
+      - name: Publish Windows single-file launcher
+        run: |
+          dotnet publish CivicContactFinderLauncher/CivicContactFinderLauncher.csproj -c Release -r win-x64 --self-contained true /p:PublishSingleFile=true /p:PublishTrimmed=false -o out/launcher
+
+      - name: Download WebView2 Evergreen Bootstrapper
+        run: |
+          powershell -Command "Invoke-WebRequest -Uri 'https://go.microsoft.com/fwlink/p/?LinkId=2124703' -OutFile 'EvergreenBootstrapper.exe'"
+
+      - name: Setup Python 3.10 (Windows)
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Bundle portable Python (Windows)
+        shell: powershell
+        run: |
+          python -V
+          python -m venv portable_python
+          .\portable_python\Scripts\python.exe -m pip install --upgrade pip
+          .\portable_python\Scripts\python.exe -m pip install -r civic_contact_finder\requirements.txt
+
+      - name: Prepare distribution folder
+        run: |
+          mkdir dist
+          copy out\launcher\CivicContactFinderLauncher.exe dist\
+          copy EvergreenBootstrapper.exe dist\
+          robocopy civic_contact_finder dist\civic_contact_finder /E
+          robocopy portable_python dist\python /E
+
+      - name: Create ZIP
+        run: |
+          powershell -Command "Add-Type -A System.IO.Compression.FileSystem; [IO.Compression.ZipFile]::CreateFromDirectory('dist','civic-contact-finder-windows-x64.zip')"
+
+      - name: Upload artifact
+        id: upload
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows-zip
+          path: civic-contact-finder-windows-x64.zip
+
+  build-linux:
+    name: Build Linux AppImage
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '10.0.x'
+
+      - name: Publish Linux single-file launcher
+        run: |
+          dotnet publish CivicContactFinderLauncher/CivicContactFinderLauncher.csproj -c Release -r linux-x64 --self-contained true /p:PublishSingleFile=true /p:PublishTrimmed=false -o out/launcher
+
+      - name: Setup Python 3.10 (Linux)
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Prepare AppDir and bundle python venv
+        run: |
+          rm -rf AppDir out/appimage || true
+          mkdir -p AppDir/usr/bin AppDir/usr/share/applications
+          cp out/launcher/CivicContactFinderLauncher AppDir/usr/bin/
+          cp -r civic_contact_finder AppDir/usr/bin/
+          python -m venv AppDir/usr/bin/python
+          source AppDir/usr/bin/python/bin/activate
+          python -m pip install --upgrade pip
+          python -m pip install -r AppDir/usr/bin/civic_contact_finder/requirements.txt
+          deactivate
+
+      - name: Create desktop entry
+        run: |
+          printf '%s\n' \
+            '[Desktop Entry]' \
+            'Name=U.S. Civic Contact Finder' \
+            'Exec=/usr/bin/CivicContactFinderLauncher' \
+            'Icon=utilities-terminal' \
+            'Terminal=false' \
+            'Type=Application' \
+            'Categories=Utility;Government;' \
+            > AppDir/usr/share/applications/civic-contact-finder.desktop
+
+      - name: Download appimagetool
+        run: |
+          curl -sLo appimagetool.AppImage https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage
+          chmod +x appimagetool.AppImage
+
+      - name: Build AppImage
+        run: |
+          ./appimagetool.AppImage AppDir out/appimage || true
+
+      - name: Upload AppImage
+        uses: actions/upload-artifact@v4
+        with:
+          name: linux-appimage
+          path: out/appimage
+
+  build-macos:
+    name: Build macOS PKG
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '10.0.x'
+
+      - name: Publish macOS single-file launcher
+        run: |
+          dotnet publish CivicContactFinderLauncher/CivicContactFinderLauncher.csproj -c Release -r osx-x64 --self-contained true /p:PublishSingleFile=true /p:PublishTrimmed=false -o out/launcher
+
+      - name: Setup Python 3.10 (macOS)
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Bundle python venv and prepare payload
+        run: |
+          rm -rf payload || true
+          mkdir -p payload/Applications/USCivicContactFinder
+          cp out/launcher/CivicContactFinderLauncher payload/Applications/USCivicContactFinder/
+          cp -r civic_contact_finder payload/Applications/USCivicContactFinder/
+          python -m venv payload/Applications/USCivicContactFinder/python
+          source payload/Applications/USCivicContactFinder/python/bin/activate
+          python -m pip install --upgrade pip
+          python -m pip install -r payload/Applications/USCivicContactFinder/civic_contact_finder/requirements.txt
+          deactivate
+
+      - name: Create .pkg (unsigned)
+        run: |
+          pkgbuild --root payload/Applications/USCivicContactFinder --identifier org.uscivicfinder --version 1.0 --install-location /Applications out/USCivicContactFinder.pkg || true
+
+      - name: Upload PKG
+        uses: actions/upload-artifact@v4
+        with:
+          name: macos-pkg
+          path: out/USCivicContactFinder.pkg
+
+  create-release:
+    name: Create GitHub Release and attach artifacts
+    runs-on: ubuntu-latest
+    needs: [build-windows, build-linux, build-macos]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download Windows ZIP artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: windows-zip
+          path: artifacts/windows
+
+      - name: Download Linux AppImage artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: linux-appimage
+          path: artifacts/linux
+
+      - name: Download macOS PKG artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: macos-pkg
+          path: artifacts/macos
+
+      - name: Create GitHub Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref_name }}
+          release_name: ${{ github.ref_name }}
+          draft: false
+          prerelease: false
+
+      - name: Upload release assets (Windows ZIP)
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: artifacts/windows/civic-contact-finder-windows-x64.zip
+          asset_name: civic-contact-finder-windows-x64.zip
+          asset_content_type: application/zip
+
+      - name: Upload release assets (Linux AppImage)
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: artifacts/linux
+          asset_name: civic-contact-finder-linux-artifacts
+          asset_content_type: application/octet-stream
+
+      - name: Upload release assets (macOS PKG)
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: artifacts/macos/USCivicContactFinder.pkg
+          asset_name: USCivicContactFinder-macos.pkg
+          asset_content_type: application/octet-stream

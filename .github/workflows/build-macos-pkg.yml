@@ -1,0 +1,53 @@
+name: Build macOS PKG
+
+on:
+  workflow_dispatch: {}
+  push:
+    branches: [ main ]
+
+jobs:
+  build-pkg:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '10.0.x'
+
+      - name: Publish macOS single-file launcher
+        run: |
+          dotnet publish CivicContactFinderLauncher/CivicContactFinderLauncher.csproj -c Release -r osx-x64 --self-contained true /p:PublishSingleFile=true /p:PublishTrimmed=false -o out/launcher
+
+      - name: Prepare payload
+        run: |
+          rm -rf payload || true
+          mkdir -p payload/Applications/USCivicContactFinder
+          cp out/launcher/CivicContactFinderLauncher payload/Applications/USCivicContactFinder/
+          cp -r civic_contact_finder payload/Applications/USCivicContactFinder/
+
+      - name: Setup Python 3.10
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Bundle Python venv
+        run: |
+          python -V
+          python -m venv payload/Applications/USCivicContactFinder/python
+          source payload/Applications/USCivicContactFinder/python/bin/activate
+          python -m pip install --upgrade pip
+          python -m pip install -r payload/Applications/USCivicContactFinder/civic_contact_finder/requirements.txt
+          deactivate
+
+      - name: Create .pkg (unsigned)
+        run: |
+          pkgbuild --root payload/Applications/USCivicContactFinder --identifier org.uscivicfinder --version 1.0 --install-location /Applications out/USCivicContactFinder.pkg || true
+
+      - name: Upload PKG
+        uses: actions/upload-artifact@v4
+        with:
+          name: USCivicContactFinder-macos.pkg
+          path: out/USCivicContactFinder.pkg

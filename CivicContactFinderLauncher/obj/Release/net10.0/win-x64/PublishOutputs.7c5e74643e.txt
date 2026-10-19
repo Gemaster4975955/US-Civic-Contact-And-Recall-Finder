@@ -1,0 +1,2 @@
+C:\Users\damet\source\repos\US Civic Contact and Recall Finder\publish\dist\windows-x64\CivicContactFinderLauncher.pdb
+C:\Users\damet\source\repos\US Civic Contact and Recall Finder\publish\dist\windows-x64\CivicContactFinderLauncher.exe

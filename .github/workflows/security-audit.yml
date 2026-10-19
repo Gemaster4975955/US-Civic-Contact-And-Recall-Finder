@@ -1,0 +1,47 @@
+name: Security audit
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch: {}
+
+jobs:
+  python-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+      - name: Install pip-audit
+        run: python -m pip install pip-audit
+      - name: Run pip-audit
+        run: |
+          pip-audit --requirements civic_contact_finder/requirements.txt --format json > pip-audit.json || true
+      - name: Upload pip-audit results
+        uses: actions/upload-artifact@v4
+        with:
+          name: pip-audit-results
+          path: pip-audit.json
+
+  dotnet-audit:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '8.0.x'
+      - name: Restore and list vulnerable packages
+        run: |
+          dotnet restore
+          dotnet list package --vulnerable > dotnet-vulnerable.txt || true
+      - name: Upload dotnet scan results
+        uses: actions/upload-artifact@v4
+        with:
+          name: dotnet-audit-results
+          path: dotnet-vulnerable.txt
+

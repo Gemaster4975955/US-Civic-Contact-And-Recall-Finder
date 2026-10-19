@@ -1,0 +1,15 @@
+C:\Users\damet\source\repos\US Civic Contact and Recall Finder\CivicContactFinderLauncher\obj\Release\net10.0\CivicContactFinderLauncher.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\damet\source\repos\US Civic Contact and Recall Finder\CivicContactFinderLauncher\obj\Release\net10.0\CivicContactFinderLauncher.AssemblyInfoInputs.cache
+C:\Users\damet\source\repos\US Civic Contact and Recall Finder\CivicContactFinderLauncher\obj\Release\net10.0\CivicContactFinderLauncher.AssemblyInfo.cs
+C:\Users\damet\source\repos\US Civic Contact and Recall Finder\CivicContactFinderLauncher\obj\Release\net10.0\CivicContactFinderLauncher.csproj.CoreCompileInputs.cache
+C:\Users\damet\source\repos\US Civic Contact and Recall Finder\CivicContactFinderLauncher\obj\Release\net10.0\CivicContactFinderLauncher.sourcelink.json
+C:\Users\damet\source\repos\US Civic Contact and Recall Finder\CivicContactFinderLauncher\bin\Release\net10.0\CivicContactFinderLauncher.exe
+C:\Users\damet\source\repos\US Civic Contact and Recall Finder\CivicContactFinderLauncher\bin\Release\net10.0\CivicContactFinderLauncher.deps.json
+C:\Users\damet\source\repos\US Civic Contact and Recall Finder\CivicContactFinderLauncher\bin\Release\net10.0\CivicContactFinderLauncher.runtimeconfig.json
+C:\Users\damet\source\repos\US Civic Contact and Recall Finder\CivicContactFinderLauncher\bin\Release\net10.0\CivicContactFinderLauncher.dll
+C:\Users\damet\source\repos\US Civic Contact and Recall Finder\CivicContactFinderLauncher\bin\Release\net10.0\CivicContactFinderLauncher.pdb
+C:\Users\damet\source\repos\US Civic Contact and Recall Finder\CivicContactFinderLauncher\obj\Release\net10.0\CivicContactFinderLauncher.dll
+C:\Users\damet\source\repos\US Civic Contact and Recall Finder\CivicContactFinderLauncher\obj\Release\net10.0\refint\CivicContactFinderLauncher.dll
+C:\Users\damet\source\repos\US Civic Contact and Recall Finder\CivicContactFinderLauncher\obj\Release\net10.0\CivicContactFinderLauncher.pdb
+C:\Users\damet\source\repos\US Civic Contact and Recall Finder\CivicContactFinderLauncher\obj\Release\net10.0\CivicContactFinderLauncher.genruntimeconfig.cache
+C:\Users\damet\source\repos\US Civic Contact and Recall Finder\CivicContactFinderLauncher\obj\Release\net10.0\ref\CivicContactFinderLauncher.dll

@@ -1,0 +1,8 @@
+<Project>
+  <PropertyGroup>
+    <!-- Enable NuGet Audit to detect known vulnerable package versions during restore -->
+    <NuGetAudit>true</NuGetAudit>
+    <!-- Treat audit results as warnings (change to Error in CI to fail builds) -->
+    <NuGetAuditTreatResultsAsWarnings>true</NuGetAuditTreatResultsAsWarnings>
+  </PropertyGroup>
+</Project>

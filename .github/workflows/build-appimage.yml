@@ -1,0 +1,64 @@
+name: Build AppImage
+
+on:
+  workflow_dispatch: {}
+  push:
+    branches: [ main ]
+
+jobs:
+  build-appimage:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '10.0.x'
+
+      - name: Publish Linux single-file launcher
+        run: |
+          dotnet publish CivicContactFinderLauncher/CivicContactFinderLauncher.csproj -c Release -r linux-x64 --self-contained true /p:PublishSingleFile=true /p:PublishTrimmed=false -o out/launcher
+
+      - name: Prepare AppDir
+        run: |
+          rm -rf AppDir out/appimage || true
+          mkdir -p AppDir/usr/bin
+          mkdir -p AppDir/usr/share/applications
+          # copy launcher
+          cp out/launcher/CivicContactFinderLauncher AppDir/usr/bin/
+          # copy web app
+          cp -r civic_contact_finder AppDir/usr/bin/
+
+      - name: Setup Python 3.10
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Bundle Python venv
+        run: |
+          python -V
+          python -m venv AppDir/usr/bin/python
+          source AppDir/usr/bin/python/bin/activate
+          python -m pip install --upgrade pip
+          python -m pip install -r AppDir/usr/bin/civic_contact_finder/requirements.txt
+          deactivate
+
+      - name: Create desktop entry
+        run: |
+          cat > AppDir/usr/share/applications/civic-contact-finder.desktop <<'EOF'
+          [Desktop Entry]
+          Name=U.S. Civic Contact Finder
+          Exec=/usr/bin/CivicContactFinderLauncher
+          Icon=utilities-terminal
+          Terminal=false
+          Type=Application
+          Categories=Utility;Government;
+          EOF
+
+      - name: Download appimagetool
+        run: |
+          curl -sLo appimagetool.AppImage https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage
+          chmod +x appimagetool.AppImage
+

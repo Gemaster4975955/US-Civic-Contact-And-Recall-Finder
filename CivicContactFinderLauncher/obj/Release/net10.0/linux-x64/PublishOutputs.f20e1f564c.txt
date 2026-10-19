@@ -1,0 +1,2 @@
+/mnt/c/Users/damet/source/repos/US Civic Contact and Recall Finder/out/launcher/CivicContactFinderLauncher.pdb
+/mnt/c/Users/damet/source/repos/US Civic Contact and Recall Finder/out/launcher/CivicContactFinderLauncher
