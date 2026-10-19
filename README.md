@@ -56,4 +56,4 @@ For developer setup, packaging, and distribution instructions, see `DEVELOPMENT.
 
 ## License
 
-This project is provided under the terms of the license included in this repository.
+This project is provided under the terms of the MIT license.
