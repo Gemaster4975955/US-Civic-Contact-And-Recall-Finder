@@ -1,73 +1,59 @@
-U.S. Civic Contact Finder — Run & Distribution
+# U.S. Civic Contact Finder
 
-Overview
+A simple way to find the right public agency when you need help with a local civic issue.
 
-This repository contains the original Flask web app (civic_contact_finder/) and native launchers/packaging that run the web app locally and present a desktop experience. The launcher starts the Flask backend on localhost and opens the UI in a browser or embedded WebView2 window.
+## What this app does
 
-1) Developer (run from source)
+This app helps people move from “who do I contact?” to “here is the right official office.” It is built around real public-sector contact information and state/local government directories.
 
-Requirements
-- Python 3.10+ (for running the Flask app)
-- dotnet SDK (for building the cross-platform launcher and WPF app)
+You can use it to:
 
-Quick steps (Windows)
-- Open a developer PowerShell in the repository root
-- cd "civic_contact_finder"
-- python -m venv .venv
-- .\.venv\Scripts\Activate.ps1
-- pip install -r requirements.txt
-- python app.py
-- Open http://127.0.0.1:5001/ in your browser
+- search by issue type, such as roads, housing, public safety, utilities, or local services
+- look up agencies by city, county, or state
+- find official government websites, complaint channels, and local service links
+- get state-specific service information and election guidance
+- review recent public safety and recall notices from official sources
 
-Quick steps (macOS / Linux)
-- cd civic_contact_finder
-- python3 -m venv .venv
-- source .venv/bin/activate
-- pip install -r requirements.txt
-- python3 app.py
-- Open http://127.0.0.1:5001/
+The app is intended for ordinary people who need to find the right place to report a problem, ask a question, or check whether a government office is the right one to contact.
 
-Note: "dotnet run" is only used for building or running the .NET launcher or WPF app during development. The published Windows desktop executable (CivicContactFinderDesktop.exe or CivicContactFinderLauncher.exe) is a self-contained executable produced by dotnet publish and does not require dotnet to be installed by end users.
+## Why it exists
 
-2) Packaged distributions (recommended)
+Too often, public information is scattered across websites, departments, and state portals. This tool brings that information together in one place so a resident can find the most relevant agency faster.
 
-What the packages include
-- A single-file launcher executable (platform-specific)
-- The Flask web app files (civic_contact_finder/)
-- A bundled portable Python virtual environment (so users do not need to install Python)
-- Helper scripts and the WebView2 Evergreen bootstrapper (Windows ZIP)
+It is designed for practical civic needs, including:
 
-Windows (ZIP / Installer)
-- Unzip the provided release ZIP.
-- Run CivicContactFinderLauncher.exe to start the bundled backend and open the UI in the default browser.
-- For a single-window native UI, use CivicContactFinderDesktop.exe (WPF + WebView2). WebView2 runtime is required. The ZIP includes the Evergreen bootstrapper so installers can install the runtime if missing.
+- reporting local problems or service issues
+- finding the correct government office for a complaint or request
+- checking official state resources and voting information
+- understanding what agency handles a specific issue
 
-Linux (AppImage)
-- Make the file executable: chmod +x CivicContactFinderLauncher.AppImage
-- Run it: ./CivicContactFinderLauncher.AppImage
-- The AppImage bundles a portable Python venv and the launcher; it will start the backend and open the system browser.
+## What you can do with it
 
-macOS (.pkg)
-- Run the installer from the release; a bundled Python runtime is installed with the app.
-- Note: macOS packages in releases are unsigned by default and Gatekeeper will warn you.
+- Search for a problem or topic
+- Enter a location to narrow results to the right area
+- See which agency is most relevant
+- Open the official office, portal, or complaint resource directly
+- Check state and local service links, election dates, and public notices
 
-3) How the launcher & embedded Python work
+## Who it is for
 
-- The launcher looks for a bundled portable Python venv included with the distribution. If present, it uses that Python to run app.py. If not found, it will try any .venv in the repo or the system Python.
-- The launcher performs a simple health-check (HTTP /healthz) and waits until the Flask server is ready before opening the UI.
-- Because the Python runtime is bundled inside the distribution, end users typically do not need to install Python.
+This app is for:
 
-4) WebView2 (Windows desktop)
+- residents trying to reach the right public office
+- community advocates and organizers
+- people navigating local government processes
+- anyone who wants a better way to find official civic contacts without digging through multiple websites
 
-- The WPF desktop app (CivicContactFinderDesktop) uses Microsoft WebView2 for an embedded browser control.
-- WebView2 requires the WebView2 runtime (Evergreen or fixed). The Windows ZIP includes the Evergreen bootstrapper; installers can run it to ensure the runtime is present.
-- If WebView2 is missing, the launcher falls back to opening the UI in the default browser.
+## Project goal
 
-7) Troubleshooting
+The goal is simple: make public contact information easier to find and easier to use.
 
-- If the UI does not open: check the launcher console for errors and verify the server is reachable at http://127.0.0.1:5001/.
-- If WebView2 fails to initialize on Windows: run the Evergreen bootstrapper included in the ZIP, or allow the launcher to open the UI in your default browser.
-- On Linux, ensure the AppImage/executable has the execute bit (chmod +x).
+This project does not replace an official agency or legal service. It helps people find the right starting point when dealing with civic, local, or government-related questions.
 
-Support & Sources
-- Developer docs, API details, and tests live inside civic_contact_finder/ — see civic_contact_finder/README.md for backend specifics.
+## Developer and build notes
+
+For developer setup, packaging, and distribution instructions, see `DEVELOPMENT.md`.
+
+## License
+
+This project is provided under the terms of the license included in this repository.
