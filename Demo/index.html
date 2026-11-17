@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Find official U.S. government contacts and civic service routes.">
+  <title>U.S. Civic Contact Finder</title>
+  <link rel="stylesheet" href="./style.css">
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <main>
+    <a class="skip-link" href="#mainContent">Skip to main content</a>
+    <div id="mainContent">
+      <h1>U.S. Civic Contact Finder</h1>
+      <p>Search official government contacts and choose a state or territory for local service routes.</p>
+
+      <section id="electionBanner" class="election-banner" aria-label="Election and voter registration information" aria-live="polite"></section>
+      <section id="recallBanner" class="recall-banner" aria-label="Product recall information">
+        <h2>Product recalls</h2>
+        <p>This static demo does not retrieve live recall notices. Check the official sources:</p>
+        <p>
+          <a href="https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts" target="_blank" rel="noopener noreferrer">FDA recalls and safety alerts</a> ·
+          <a href="https://www.fsis.usda.gov/recalls-alerts" target="_blank" rel="noopener noreferrer">USDA meat, poultry, and egg recalls</a> ·
+          <a href="https://www.cpsc.gov/Recalls" target="_blank" rel="noopener noreferrer">CPSC consumer product recalls</a>
+        </p>
+        <p class="recall-note">A listing is not a guarantee that a product is or is not recalled. Verify the exact product, lot, and current instructions in the official notice.</p>
+      </section>
+
+      <div class="demo-location" role="note">Demo location: Washington, D.C. Choose a different state or territory below to explore its service links.</div>
+
+      <div class="search">
+        <label class="visually-hidden" for="q">Issue or service</label>
+        <input id="q" maxlength="200" placeholder="Issue (e.g. pothole)">
+        <label class="visually-hidden" for="state">State or territory</label>
+        <select id="state" aria-label="State or territory" disabled>
+          <option value="">Loading jurisdictions…</option>
+        </select>
+        <button id="searchBtn" type="button" disabled>Search</button>
+      </div>
+      <p class="privacy-note">Search and directory data stay in this page; no location is geocoded or sent to a service. Confirm details with the official agency before relying on them.</p>
+
+      <div id="locationStatus" class="location-status" role="status" aria-live="polite"></div>
+      <div id="stateRouting" aria-live="polite"></div>
+      <div id="results" class="grid" aria-live="polite"></div>
+    </div>
+    <footer>
+      <p>Directory information is provided as a starting point and may change. Check the linked official source for current details.</p>
+    </footer>
+  </main>
+</body>
+</html>

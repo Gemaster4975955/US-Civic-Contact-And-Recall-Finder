@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Find official U.S. government contacts and civic service routes." />
+  <title>U.S. Civic Contact Finder</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <script src="/static/app.js" defer></script>
+</head>
+<body>
+  <main>
+    <a class="skip-link" href="#mainContent">Skip to main content</a>
+    <div id="mainContent">
+    <h1>U.S. Civic Contact Finder</h1>
+    <p>Search official government contacts, find your elected representatives, and get nonpartisan voter-registration information. Choose a state or territory for local and state service routes.</p>
+
+    <section id="electionBanner" class="election-banner" aria-label="Election and voter registration information" aria-live="polite">
+      <p>Loading current election information…</p>
+    </section>
+    <section id="recallBanner" class="recall-banner" aria-label="Recent product recall notices" aria-live="polite">
+      <h2>Recent product recalls</h2>
+      <p>Loading recent FDA recall notices…</p>
+    </section>
+
+    <div class="search">
+      <label class="visually-hidden" for="q">Issue or service</label>
+      <input id="q" maxlength="200" placeholder="Issue (e.g. pothole)" />
+      <label class="visually-hidden" for="location">City or ZIP code, optional</label>
+      <input id="location" maxlength="200" placeholder="City or ZIP (optional)" />
+      <label class="visually-hidden" for="state">State or territory</label>
+      <select id="state" aria-label="State or territory">
+        <option value="">Choose state/territory</option>
+      </select>
+      <button id="searchBtn">Search</button>
+    </div>
+    <p class="privacy-note">If you enter a location, it is sent to <a href="https://nominatim.openstreetmap.org/" target="_blank" rel="noopener noreferrer">OpenStreetMap Nominatim</a> to identify the state. You can choose a state manually instead. Map data © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap contributors</a>.</p>
+
+    <div id="locationStatus" class="location-status" role="status" aria-live="polite"></div>
+    <div id="stateRouting" aria-live="polite"></div>
+    <div id="results" class="grid" aria-live="polite"></div>
+    </div>
+    <footer>
+      <p>Recall summaries link to official notices. Verify the exact product, lot, and current instructions in the source notice.</p>
+      {% if privacy_policy_url %}<a href="{{ privacy_policy_url }}" rel="noopener noreferrer">Privacy</a>{% endif %}
+      {% if privacy_policy_url and support_url %} · {% endif %}
+      {% if support_url %}<a href="{{ support_url }}" rel="noopener noreferrer">Support</a>{% endif %}
+    </footer>
+  </main>
+</body>
+</html>

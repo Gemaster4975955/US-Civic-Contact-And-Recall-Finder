@@ -1,0 +1,19 @@
+@import url("./civic_contact_finder/static/style.css");
+
+.search {
+  grid-template-columns: minmax(180px, 1fr) minmax(180px, 0.9fr) auto;
+}
+
+.demo-location {
+  margin: 16px 0;
+  padding: 10px 12px;
+  border-left: 5px solid #005ea8;
+  border-radius: 6px;
+  background: #e9f3fb;
+}
+
+@media (max-width: 700px) {
+  .search {
+    grid-template-columns: 1fr;
+  }
+}
