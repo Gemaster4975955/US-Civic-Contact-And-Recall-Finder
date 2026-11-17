@@ -1,101 +1,41 @@
 {
   "version": 4,
   "targets": {
-    "net10.0": {
-      "Microsoft.NET.ILLink.Tasks/10.0.13": {
-        "type": "package",
-        "build": {
-          "build/Microsoft.NET.ILLink.Tasks.props": {}
-        }
-      }
-    },
-    "net10.0/linux-x64": {
-      "Microsoft.NET.ILLink.Tasks/10.0.13": {
-        "type": "package",
-        "build": {
-          "build/Microsoft.NET.ILLink.Tasks.props": {}
-        }
-      }
-    }
+    "net10.0": {}
   },
-  "libraries": {
-    "Microsoft.NET.ILLink.Tasks/10.0.13": {
-      "sha512": "40yrBMsLEcjixBR4G+FiUaBPvxXIPSKJ2OgSrbOZcmSDBda4Sb0k7BWrfDpIvn3IvvDzwOL/tEPa6gDQfh6aRw==",
-      "type": "package",
-      "path": "microsoft.net.illink.tasks/10.0.13",
-      "hasTools": true,
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "Icon.png",
-        "Sdk/Sdk.props",
-        "THIRD-PARTY-NOTICES.TXT",
-        "analyzers/dotnet/cs/ILLink.CodeFixProvider.dll",
-        "analyzers/dotnet/cs/ILLink.RoslynAnalyzer.dll",
-        "build/Microsoft.NET.ILLink.Analyzers.props",
-        "build/Microsoft.NET.ILLink.Tasks.props",
-        "build/Microsoft.NET.ILLink.targets",
-        "microsoft.net.illink.tasks.10.0.13.nupkg.sha512",
-        "microsoft.net.illink.tasks.nuspec",
-        "tools/net/ILLink.Tasks.deps.json",
-        "tools/net/ILLink.Tasks.dll",
-        "tools/net/Mono.Cecil.Mdb.dll",
-        "tools/net/Mono.Cecil.Pdb.dll",
-        "tools/net/Mono.Cecil.Rocks.dll",
-        "tools/net/Mono.Cecil.dll",
-        "tools/net/Sdk/Sdk.props",
-        "tools/net/build/Microsoft.NET.ILLink.Analyzers.props",
-        "tools/net/build/Microsoft.NET.ILLink.Tasks.props",
-        "tools/net/build/Microsoft.NET.ILLink.targets",
-        "tools/net/illink.deps.json",
-        "tools/net/illink.dll",
-        "tools/net/illink.runtimeconfig.json",
-        "tools/netframework/ILLink.Tasks.dll",
-        "tools/netframework/ILLink.Tasks.dll.config",
-        "tools/netframework/Mono.Cecil.Mdb.dll",
-        "tools/netframework/Mono.Cecil.Pdb.dll",
-        "tools/netframework/Mono.Cecil.Rocks.dll",
-        "tools/netframework/Mono.Cecil.dll",
-        "tools/netframework/Sdk/Sdk.props",
-        "tools/netframework/System.Buffers.dll",
-        "tools/netframework/System.Collections.Immutable.dll",
-        "tools/netframework/System.Memory.dll",
-        "tools/netframework/System.Numerics.Vectors.dll",
-        "tools/netframework/System.Reflection.Metadata.dll",
-        "tools/netframework/System.Runtime.CompilerServices.Unsafe.dll",
-        "tools/netframework/build/Microsoft.NET.ILLink.Analyzers.props",
-        "tools/netframework/build/Microsoft.NET.ILLink.Tasks.props",
-        "tools/netframework/build/Microsoft.NET.ILLink.targets",
-        "useSharedDesignerContext.txt"
-      ]
-    }
-  },
+  "libraries": {},
   "projectFileDependencyGroups": {
-    "net10.0": [
-      "Microsoft.NET.ILLink.Tasks >= 10.0.13"
-    ]
+    "net10.0": []
   },
   "packageFolders": {
-    "/root/.nuget/packages/": {}
+    "C:\\Users\\damet\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/mnt/c/Users/damet/source/repos/US Civic Contact and Recall Finder/CivicContactFinderLauncher/CivicContactFinderLauncher.csproj",
+      "projectUniqueName": "C:\\Users\\damet\\USCCARF\\US-Civic-Contact-And-Recall-Finder\\CivicContactFinderLauncher\\CivicContactFinderLauncher.csproj",
       "projectName": "CivicContactFinderLauncher",
-      "projectPath": "/mnt/c/Users/damet/source/repos/US Civic Contact and Recall Finder/CivicContactFinderLauncher/CivicContactFinderLauncher.csproj",
-      "packagesPath": "/root/.nuget/packages/",
-      "outputPath": "/mnt/c/Users/damet/source/repos/US Civic Contact and Recall Finder/CivicContactFinderLauncher/obj/",
+      "projectPath": "C:\\Users\\damet\\USCCARF\\US-Civic-Contact-And-Recall-Finder\\CivicContactFinderLauncher\\CivicContactFinderLauncher.csproj",
+      "packagesPath": "C:\\Users\\damet\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\damet\\USCCARF\\US-Civic-Contact-And-Recall-Finder\\CivicContactFinderLauncher\\obj\\",
       "projectStyle": "PackageReference",
       "centralPackageVersionsManagementEnabled": true,
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "/mnt/c/Users/damet/source/repos/US Civic Contact and Recall Finder/nuget.config",
-        "/root/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\damet\\USCCARF\\US-Civic-Contact-And-Recall-Finder\\NuGet.Config",
+        "C:\\Users\\damet\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net10.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -115,20 +55,12 @@
         "auditLevel": "low",
         "auditMode": "all"
       },
-      "SdkAnalysisLevel": "10.0.400"
+      "SdkAnalysisLevel": "11.0.100"
     },
     "frameworks": {
       "net10.0": {
         "framework": "net10.0",
         "targetAlias": "net10.0",
-        "dependencies": {
-          "Microsoft.NET.ILLink.Tasks": {
-            "suppressParent": "All",
-            "target": "Package",
-            "version": "[10.0.13, )",
-            "autoReferenced": true
-          }
-        },
         "centralPackageVersions": {
           "Microsoft.Web.WebView2": "1.0.4258.31"
         },
@@ -145,16 +77,20 @@
         "warn": true,
         "downloadDependencies": [
           {
-            "name": "Microsoft.AspNetCore.App.Runtime.linux-x64",
-            "version": "[10.0.13, 10.0.13]"
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[10.0.15, 10.0.15]"
           },
           {
-            "name": "Microsoft.NETCore.App.Host.linux-x64",
-            "version": "[10.0.13, 10.0.13]"
+            "name": "Microsoft.NETCore.App.Host.win-arm64",
+            "version": "[10.0.15, 10.0.15]"
           },
           {
-            "name": "Microsoft.NETCore.App.Runtime.linux-x64",
-            "version": "[10.0.13, 10.0.13]"
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[10.0.15, 10.0.15]"
+          },
+          {
+            "name": "Microsoft.WindowsDesktop.App.Ref",
+            "version": "[10.0.15, 10.0.15]"
           }
         ],
         "frameworkReferences": {
@@ -162,7 +98,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/10.0.402/PortableRuntimeIdentifierGraph.json",
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\11.0.100/PortableRuntimeIdentifierGraph.json",
         "packagesToPrune": {
           "Microsoft.CSharp": "(,4.7.32767]",
           "Microsoft.VisualBasic": "(,10.4.32767]",
@@ -437,11 +373,6 @@
           "System.Xml.XPath": "(,4.3.32767]",
           "System.Xml.XPath.XDocument": "(,5.0.32767]"
         }
-      }
-    },
-    "runtimes": {
-      "linux-x64": {
-        "#import": []
       }
     }
   }

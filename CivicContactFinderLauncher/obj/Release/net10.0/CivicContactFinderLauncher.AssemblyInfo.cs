@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CivicContactFinderLauncher")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+420dc7eb470ce4872a38af3b2f750f1a87db982f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
 [assembly: System.Reflection.AssemblyProductAttribute("CivicContactFinderLauncher")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CivicContactFinderLauncher")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

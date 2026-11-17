@@ -1,10 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "/UdhANsa5dU=",
+  "dgSpecHash": "WEtaopGwORU=",
   "success": true,
-  "projectFilePath": "C:\\Users\\damet\\source\\repos\\US Civic Contact and Recall Finder\\CivicContactFinderDesktop\\CivicContactFinderDesktop.csproj",
+  "projectFilePath": "C:\\Users\\damet\\USCCARF\\US-Civic-Contact-And-Recall-Finder\\CivicContactFinderDesktop\\CivicContactFinderDesktop.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\damet\\.nuget\\packages\\microsoft.web.webview2\\1.0.4258.31\\microsoft.web.webview2.1.0.4258.31.nupkg.sha512"
+    "C:\\Users\\damet\\.nuget\\packages\\microsoft.web.webview2\\1.0.4258.31\\microsoft.web.webview2.1.0.4258.31.nupkg.sha512",
+    "C:\\Users\\damet\\.nuget\\packages\\microsoft.netcore.app.ref\\10.0.15\\microsoft.netcore.app.ref.10.0.15.nupkg.sha512",
+    "C:\\Users\\damet\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\10.0.15\\microsoft.windowsdesktop.app.ref.10.0.15.nupkg.sha512",
+    "C:\\Users\\damet\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\10.0.15\\microsoft.aspnetcore.app.ref.10.0.15.nupkg.sha512",
+    "C:\\Users\\damet\\.nuget\\packages\\microsoft.netcore.app.host.win-arm64\\10.0.15\\microsoft.netcore.app.host.win-arm64.10.0.15.nupkg.sha512"
   ],
   "logs": []
 }

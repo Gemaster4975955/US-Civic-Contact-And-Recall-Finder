@@ -1,13 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "KQ8IM8fn3fs=",
+  "dgSpecHash": "VADpWoVhY80=",
   "success": true,
-  "projectFilePath": "/mnt/c/Users/damet/source/repos/US Civic Contact and Recall Finder/CivicContactFinderLauncher/CivicContactFinderLauncher.csproj",
+  "projectFilePath": "C:\\Users\\damet\\USCCARF\\US-Civic-Contact-And-Recall-Finder\\CivicContactFinderLauncher\\CivicContactFinderLauncher.csproj",
   "expectedPackageFiles": [
-    "/root/.nuget/packages/microsoft.net.illink.tasks/10.0.13/microsoft.net.illink.tasks.10.0.13.nupkg.sha512",
-    "/root/.nuget/packages/microsoft.netcore.app.runtime.linux-x64/10.0.13/microsoft.netcore.app.runtime.linux-x64.10.0.13.nupkg.sha512",
-    "/root/.nuget/packages/microsoft.aspnetcore.app.runtime.linux-x64/10.0.13/microsoft.aspnetcore.app.runtime.linux-x64.10.0.13.nupkg.sha512",
-    "/root/.nuget/packages/microsoft.netcore.app.host.linux-x64/10.0.13/microsoft.netcore.app.host.linux-x64.10.0.13.nupkg.sha512"
+    "C:\\Users\\damet\\.nuget\\packages\\microsoft.netcore.app.ref\\10.0.15\\microsoft.netcore.app.ref.10.0.15.nupkg.sha512",
+    "C:\\Users\\damet\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\10.0.15\\microsoft.windowsdesktop.app.ref.10.0.15.nupkg.sha512",
+    "C:\\Users\\damet\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\10.0.15\\microsoft.aspnetcore.app.ref.10.0.15.nupkg.sha512",
+    "C:\\Users\\damet\\.nuget\\packages\\microsoft.netcore.app.host.win-arm64\\10.0.15\\microsoft.netcore.app.host.win-arm64.10.0.15.nupkg.sha512"
   ],
   "logs": []
 }
